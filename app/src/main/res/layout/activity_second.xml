@@ -13,11 +13,11 @@
         android:text="返回"
         android:id="@+id/button_back" />
 
-    <Button
-        android:layout_width="wrap_content"
+    <EditText
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="打电话"
-        android:id="@+id/button_tel"
+        android:id="@+id/editText"
+        android:layout_weight="4.45"
         android:layout_gravity="center_vertical" />
 
     <Button
@@ -26,5 +26,11 @@
         android:text="关闭应用"
         android:id="@+id/button_quit_app"
         android:layout_gravity="bottom" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="打电话"
+        android:id="@+id/button_tel" />
 
 </LinearLayout>

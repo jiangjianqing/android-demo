@@ -47,7 +47,7 @@ public class MainActivity extends BaseActivity {
                 //Intent intent=new Intent(MainActivity.this,SecondActivity.class);
                 //startActivity(intent);
 
-                SecondActivity.startAction(MainActivity.this,"hello,second activity!","");
+                SecondActivity.startAction(MainActivity.this, "hello,second activity!", "");
 
             }
         });
@@ -60,6 +60,12 @@ public class MainActivity extends BaseActivity {
                 finish();
             }
         });
+
+        float xdpi = getResources().getDisplayMetrics().xdpi;
+        float ydpi = getResources().getDisplayMetrics().ydpi;
+        Log.d("MainActivity", "输出屏幕像素密度dpi：");
+        Log.d("MainActivity", "xdpi is " + xdpi);
+        Log.d("MainActivity", "ydpi is " + ydpi);
     }
 
     @Override
