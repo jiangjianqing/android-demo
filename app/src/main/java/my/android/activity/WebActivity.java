@@ -15,6 +15,11 @@ import com.example.ztxs.myapplication2.R;
 
 public class WebActivity extends AppCompatActivity {
 
+    /**
+     * 根据传入的url打开网页
+     * @param context
+     * @param url
+     */
     public static void startAction(Context context, String url) {
         Intent intent = new Intent(context, WebActivity.class);
         intent.putExtra("url", url);
@@ -44,8 +49,10 @@ public class WebActivity extends AppCompatActivity {
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                //直接让本WebView加载url，不打开系统浏览器
                 view.loadUrl(url);
                 return true;
+
                 //return super.shouldOverrideUrlLoading(view, url);
             }
         });
