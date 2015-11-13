@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 
+import my.android.sample.JsonSample;
+
 /**
  * 提供全局Application 变量，如Context等等
  * Created by ztxs on 15-11-13.
@@ -18,8 +20,10 @@ public class MyApplication extends Application {
         context=getApplicationContext();
         //设置日志等级
         LogUtil.setLogLevel(LogUtil.LogLevel.INFO);
-        Log.d("MyApplication","原生log测试下LogUtil");
+        Log.d("MyApplication", "原生log测试下LogUtil");
         LogUtil.d("MyApplication","测试下LogUtil");
+
+        JsonSample.illustrateGson();
     }
 
     /**
