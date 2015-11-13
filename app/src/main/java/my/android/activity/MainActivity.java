@@ -94,6 +94,9 @@ public class MainActivity extends BaseActivity {
             case R.id.action_log:
                 Log.w("MainActivity","点击了log menu");
                 break;
+            case R.id.action_webview:
+                WebActivity.startAction(this,"http://www.baidu.com");
+                break;
             default:
                 isProcessed=false;
         }

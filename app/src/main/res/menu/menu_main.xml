@@ -5,4 +5,5 @@
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/action_add" android:title="add"/>
     <item android:id="@+id/action_log" android:title="log"/>
+    <item android:id="@+id/action_webview" android:title="webview"/>
 </menu>

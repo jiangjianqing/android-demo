@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ztxs.myapplication2" >
-<!-- android:name改用自己定义的MyApplication，完成全局对象的初始化 -->
+
+    <!-- 访问internet需要此权限 -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <!-- android:name改用自己定义的MyApplication，完成全局对象的初始化 -->
     <application
         android:name="my.android.utils.MyApplication"
         android:allowBackup="true"
@@ -9,6 +13,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
+
+
         <activity
             android:name="my.android.activity.MainActivity"
             android:label="@string/app_name"
@@ -21,11 +27,18 @@
         </activity>
         <activity android:name="my.android.activity.SecondActivity" >
             <intent-filter>
+
                 <!-- 只能有1个action，但可以有多个category -->
-                <action android:name="myapplication.activity.second.Start"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="myapplication.category.Second"/>
+                <action android:name="myapplication.activity.second.Start" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="myapplication.category.Second" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="my.android.activity.WebActivity"
+            android:label="@string/title_activity_web"
+            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
     </application>
 
