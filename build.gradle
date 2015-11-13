@@ -15,6 +15,9 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+//这里加入maven库
+        mavenCentral()
+
     }
 }
 
