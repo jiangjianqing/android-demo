@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- 访问网络状态需要此权限 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <!-- android:name改用自己定义的MyApplication，完成全局对象的初始化 -->
     <application
@@ -18,6 +19,11 @@
 
         <service android:name="my.android.service.LongRunningService"/>
         <receiver android:name="my.android.broadcast.AlarmReceiver"/>
+        <receiver android:name="my.android.broadcast.BootCompleteReceiver">
+            <intent-filter>
+                <action android:name="ANDROID.INTENT.ACTION.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
 
         <activity
             android:name="my.android.activity.MainActivity"
