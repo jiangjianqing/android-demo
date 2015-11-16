@@ -15,7 +15,6 @@ import android.widget.Toast;
 import com.example.ztxs.myapplication2.R;
 
 import my.android.broadcast.NetworkChangeReceiver;
-import my.android.utils.LogUtil;
 
 public class MainActivity extends BaseActivity {
 
@@ -77,16 +76,19 @@ public class MainActivity extends BaseActivity {
         IntentFilter intentFilter=new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
         //intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
         networkChangeReceiver=new NetworkChangeReceiver();
-        registerReceiver(networkChangeReceiver,intentFilter);
+        //用父类的注册函数代替natively registerReceiver
+        registerGlobalReceiver(networkChangeReceiver, intentFilter, "MainActivity networkChangeReceiver");
+        //registerReceiver(networkChangeReceiver,intentFilter);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
 
-        //动态注册的广播接收器一定都要取消注册
-        LogUtil.d("MainActivity","注销NetworkChangeReceiver");
-        unregisterReceiver(networkChangeReceiver);
+        //动态注册的广播接收器一定都要取消注册,
+        //通过wrap的registerLocalReceiver和registerGlobalReceiver注册的由BaseActivity完成unregister工作
+        //LogUtil.d("MainActivity","注销NetworkChangeReceiver");
+        //unregisterReceiver(networkChangeReceiver);
     }
 
     @Override
