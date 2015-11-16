@@ -90,7 +90,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * 注册LocalBroadcastReceiver
+     * 注册LocalBroadcastReceiver(本地广播是无法通过静态注册的方式来接收)
      * @param receiver
      * @param filter
      */
@@ -99,7 +99,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * 注册LocalBroadcastReceiver
+     * 注册LocalBroadcastReceiver(本地广播是无法通过静态注册的方式来接收)
      * @param receiver The BroadcastReceiver to register.
      * @param filter The BroadcastReceiver's filter param
      */
