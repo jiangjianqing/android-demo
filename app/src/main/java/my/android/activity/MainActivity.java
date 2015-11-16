@@ -1,5 +1,7 @@
 package my.android.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -17,6 +19,11 @@ import com.example.ztxs.myapplication2.R;
 import my.android.broadcast.NetworkChangeReceiver;
 
 public class MainActivity extends BaseActivity {
+
+    public static void startAction(Context context){
+        Intent intent=new Intent(context,MainActivity.class);
+        context.startActivity(intent);
+    }
 
     private NetworkChangeReceiver networkChangeReceiver;
 
@@ -63,6 +70,15 @@ public class MainActivity extends BaseActivity {
             public void onClick(View v) {
                 //关闭activity，等同于back键
                 finish();
+            }
+        });
+
+        Button btnForceOffline=(Button)findViewById(R.id.force_offline);
+        btnForceOffline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent("my.android.receiver.FORCE_OFFLINE");
+                sendBroadcast(intent);
             }
         });
 

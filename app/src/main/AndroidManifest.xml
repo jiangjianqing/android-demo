@@ -5,8 +5,10 @@
     <!-- 访问internet需要此权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- 访问网络状态需要此权限 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- ForceOfflineReceiver广播接收器中弹出对话框必须具有该权限 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <!-- android:name改用自己定义的MyApplication，完成全局对象的初始化 -->
     <application
@@ -16,12 +18,17 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
+        <service android:name="my.android.service.LongRunningService" />
 
-        <service android:name="my.android.service.LongRunningService"/>
-        <receiver android:name="my.android.broadcast.AlarmReceiver"/>
-        <receiver android:name="my.android.broadcast.BootCompleteReceiver">
+        <receiver android:name="my.android.broadcast.AlarmReceiver" />
+        <receiver android:name="my.android.broadcast.BootCompleteReceiver" >
             <intent-filter>
-                <action android:name="ANDROID.INTENT.ACTION.BOOT_COMPLETED"/>
+                <action android:name="ANDROID.INTENT.ACTION.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="my.android.broadcast.ForceOfflineReceiver">
+            <intent-filter>
+                <action android:name="my.android.receiver.FORCE_OFFLINE"/>
             </intent-filter>
         </receiver>
 
@@ -29,11 +36,7 @@
             android:name="my.android.activity.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name="my.android.activity.SecondActivity" >
             <intent-filter>
@@ -51,6 +54,16 @@
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity android:name="my.android.activity.HttpUrlConnectionActivity" >
+        </activity>
+        <activity
+            android:name="my.android.activity.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
