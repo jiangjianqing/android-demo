@@ -1,5 +1,6 @@
 package my.android.activity;
 
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,7 +14,12 @@ import android.widget.Toast;
 
 import com.example.ztxs.myapplication2.R;
 
+import my.android.broadcast.NetworkChangeReceiver;
+import my.android.utils.LogUtil;
+
 public class MainActivity extends BaseActivity {
+
+    private NetworkChangeReceiver networkChangeReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +72,21 @@ public class MainActivity extends BaseActivity {
         Log.d("MainActivity", "输出屏幕像素密度dpi：");
         Log.d("MainActivity", "xdpi is " + xdpi);
         Log.d("MainActivity", "ydpi is " + ydpi);
+
+        //注册网络状态BroadcastReceiver
+        IntentFilter intentFilter=new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
+        //intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        networkChangeReceiver=new NetworkChangeReceiver();
+        registerReceiver(networkChangeReceiver,intentFilter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        //动态注册的广播接收器一定都要取消注册
+        LogUtil.d("MainActivity","注销NetworkChangeReceiver");
+        unregisterReceiver(networkChangeReceiver);
     }
 
     @Override
