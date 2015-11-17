@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.example.ztxs.myapplication2.R;
 
 import my.android.activity.MainActivity;
+import my.android.activity.WebActivity;
 import my.android.fragment.website.WebSiteContent;
 import my.android.utils.LogUtil;
 
@@ -132,6 +133,9 @@ public class WebSiteNameFragment extends Fragment implements AbsListView.OnItemC
             // fragment is attached to one) that an item has been selected.
             mListener.onFragmentInteraction(WebSiteContent.ITEMS.get(position).name);
         }
+
+        WebSiteContent.WebSiteItem webSiteItem=WebSiteContent.ITEMS.get(position);
+        WebActivity.startAction(getActivity(),webSiteItem.url);
     }
 
     /**
