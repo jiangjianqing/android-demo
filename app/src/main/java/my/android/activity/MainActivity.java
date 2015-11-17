@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.ztxs.myapplication2.R;
 
 import my.android.broadcast.NetworkChangeReceiver;
+import my.android.fragment.WebSiteNameFragment;
 
 public class MainActivity extends BaseActivity {
 
@@ -26,6 +27,8 @@ public class MainActivity extends BaseActivity {
     }
 
     private NetworkChangeReceiver networkChangeReceiver;
+
+    private WebSiteNameFragment webSiteNameFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,42 +49,6 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        Button btnOpenSecondActivity=(Button)findViewById(R.id.button_open_second_activity);
-        btnOpenSecondActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //implicit隐式调用
-                //Intent intent=new Intent("myapplication.activity.second.Start");
-                //intent.addCategory("myapplication.category.Second");
-                //intent.putExtra("extra_data","hello,second activity!");
-
-                //explicit显式调用
-                //Intent intent=new Intent(MainActivity.this,SecondActivity.class);
-                //startActivity(intent);
-
-                SecondActivity.startAction(MainActivity.this, "hello,second activity!", "");
-
-            }
-        });
-
-        Button buttonQuit=(Button)findViewById(R.id.button_quit);
-        buttonQuit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //关闭activity，等同于back键
-                finish();
-            }
-        });
-
-        Button btnForceOffline=(Button)findViewById(R.id.force_offline);
-        btnForceOffline.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent("my.android.receiver.FORCE_OFFLINE");
-                sendBroadcast(intent);
-            }
-        });
-
         float xdpi = getResources().getDisplayMetrics().xdpi;
         float ydpi = getResources().getDisplayMetrics().ydpi;
         Log.d("MainActivity", "输出屏幕像素密度dpi：");
@@ -95,6 +62,10 @@ public class MainActivity extends BaseActivity {
         //用父类的注册函数代替natively registerReceiver
         registerGlobalReceiver(networkChangeReceiver, intentFilter, "MainActivity networkChangeReceiver");
         //registerReceiver(networkChangeReceiver,intentFilter);
+
+        //从Activity中获取Fragment
+        webSiteNameFragment=(WebSiteNameFragment)getFragmentManager().findFragmentById(R.id.web_site_name_fragment);
+        webSiteNameFragment.testInvoke();
     }
 
     @Override
@@ -121,23 +92,35 @@ public class MainActivity extends BaseActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         boolean isProcessed=true;
         switch(item.getItemId()){
-            case R.id.action_add:
-                //弹出一个会自动消失的提示框
-                Toast.makeText(this,"点击了add menu",Toast.LENGTH_LONG).show();
-                Log.w("MainActivity", "点击了add menu");
-                break;
             case R.id.action_settings:
                 Toast.makeText(this,"点击了setting menu",Toast.LENGTH_SHORT).show();
                 Log.w("MainActivity","点击了setting menu");
-                break;
-            case R.id.action_log:
-                Log.w("MainActivity","点击了log menu");
                 break;
             case R.id.action_webview:
                 WebActivity.startAction(this,"http://www.baidu.com");
                 break;
             case R.id.action_httpUrlConnection:
                 HttpUrlConnectionActivity.startAction(this,"http://www.baidu.com");
+                break;
+            case R.id.action_forceoffline:
+                Intent intent=new Intent("my.android.receiver.FORCE_OFFLINE");
+                sendBroadcast(intent);
+                break;
+            case R.id.action_secondactivity:
+                //implicit隐式调用
+                //Intent intent=new Intent("myapplication.activity.second.Start");
+                //intent.addCategory("myapplication.category.Second");
+                //intent.putExtra("extra_data","hello,second activity!");
+
+                //explicit显式调用
+                //Intent intent=new Intent(MainActivity.this,SecondActivity.class);
+                //startActivity(intent);
+
+                SecondActivity.startAction(MainActivity.this, "hello,second activity!", "");
+                break;
+            case R.id.action_quit:
+                //关闭activity，等同于back键
+                finish();
                 break;
             default:
                 isProcessed=false;

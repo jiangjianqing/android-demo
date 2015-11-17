@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" app:showAsAction="never" />
-    <item android:id="@+id/action_add" android:title="add"/>
-    <item android:id="@+id/action_log" android:title="log"/>
     <item android:id="@+id/action_httpUrlConnection" android:title="httpUrl"/>
     <item android:id="@+id/action_webview" android:title="webview"/>
+    <item android:id="@+id/action_forceoffline" android:title="ForceOffline"/>
+    <item android:id="@+id/action_secondactivity" android:title="secondactivity"/>
+    <item android:id="@+id/action_quit" android:title="quit"/>
 </menu>
