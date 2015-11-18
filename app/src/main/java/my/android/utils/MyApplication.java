@@ -4,6 +4,9 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.example.ztxs.myapplication2.R;
 
 import my.android.sample.JsonSample;
 import my.android.service.LongRunningService;
@@ -38,5 +41,17 @@ public class MyApplication extends Application {
      */
     public static Context getContext() {
         return context;
+    }
+
+    private static long exitTime=0L;
+    public static void exit(){
+        if ((System.currentTimeMillis() - exitTime) > 2000) {
+            Toast.makeText(getContext(), R.string.confirm_exit,
+                    Toast.LENGTH_SHORT).show();
+            exitTime = System.currentTimeMillis();
+        } else {
+            ActivityCollector.finishAll();
+            System.exit(0);
+        }
     }
 }

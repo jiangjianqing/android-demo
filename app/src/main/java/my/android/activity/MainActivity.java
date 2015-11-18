@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.example.ztxs.myapplication2.R;
 import my.android.broadcast.NetworkChangeReceiver;
 import my.android.fragment.WebSiteContentFragment;
 import my.android.fragment.WebSiteNameFragment;
+import my.android.utils.MyApplication;
 
 public class MainActivity extends BaseActivity implements WebSiteNameFragment.OnWebSiteNameChangeListener{
 
@@ -150,5 +152,15 @@ public class MainActivity extends BaseActivity implements WebSiteNameFragment.On
         }else{
             WebActivity.startAction(this,url);
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        //这里改为两次点击Back键退出
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            MyApplication.exit();
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
