@@ -1,9 +1,8 @@
 package my.android.fragment;
 
 import android.app.Activity;
-import android.content.Context;
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,6 @@ import android.widget.TextView;
 import com.example.ztxs.myapplication2.R;
 
 import my.android.activity.MainActivity;
-import my.android.activity.WebActivity;
 import my.android.fragment.website.WebSiteContent;
 import my.android.utils.LogUtil;
 
@@ -26,7 +24,7 @@ import my.android.utils.LogUtil;
  * Large screen devices (such as tablets) are supported by replacing the ListView
  * with a GridView.
  * <p>
- * Activities containing this fragment MUST implement the {@link OnFragmentInteractionListener}
+ * Activities containing this fragment MUST implement the {@link OnWebSiteNameChangeListener}
  * interface.
  */
 public class WebSiteNameFragment extends Fragment implements AbsListView.OnItemClickListener {
@@ -40,7 +38,7 @@ public class WebSiteNameFragment extends Fragment implements AbsListView.OnItemC
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+    private OnWebSiteNameChangeListener mListener;
 
     /**
      * The fragment's ListView/GridView.
@@ -54,7 +52,7 @@ public class WebSiteNameFragment extends Fragment implements AbsListView.OnItemC
     private ListAdapter mAdapter;
 
     public void testInvoke(){
-        LogUtil.d("WebSiteNameFragment","从外部调用Fragment的方法成功");
+        LogUtil.d("WebSiteNameFragment", "从外部调用Fragment的方法成功");
     }
 
     // TODO: Rename and change types of parameters
@@ -89,7 +87,7 @@ public class WebSiteNameFragment extends Fragment implements AbsListView.OnItemC
 
         //从Fragment获取Activity
         MainActivity activity = (MainActivity) getActivity();
-        LogUtil.d("WebSiteNameFragment","在Fragment中获取Activity");
+        LogUtil.d("WebSiteNameFragment", "在Fragment中获取Activity");
     }
 
     @Override
@@ -113,7 +111,7 @@ public class WebSiteNameFragment extends Fragment implements AbsListView.OnItemC
         //20151117 源码中标注用来替代的onAttach(Context context)经测试无效
         try {
 
-            //mListener = (OnFragmentInteractionListener) context;
+            mListener = (OnWebSiteNameChangeListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -128,14 +126,15 @@ public class WebSiteNameFragment extends Fragment implements AbsListView.OnItemC
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        WebSiteContent.WebSiteItem webSiteItem=WebSiteContent.ITEMS.get(position);
         if (null != mListener) {
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
-            mListener.onFragmentInteraction(WebSiteContent.ITEMS.get(position).name);
+
+            //mListener.onFragmentInteraction(WebSiteContent.ITEMS.get(position).name);
+            mListener.onChangeUrl(webSiteItem.url);
         }
 
-        WebSiteContent.WebSiteItem webSiteItem=WebSiteContent.ITEMS.get(position);
-        WebActivity.startAction(getActivity(),webSiteItem.url);
     }
 
     /**
@@ -161,9 +160,10 @@ public class WebSiteNameFragment extends Fragment implements AbsListView.OnItemC
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        public void onFragmentInteraction(String id);
+    public interface OnWebSiteNameChangeListener {
+
+        //public void onFragmentInteraction(String id);
+        public void onChangeUrl(String url);
     }
 
 }

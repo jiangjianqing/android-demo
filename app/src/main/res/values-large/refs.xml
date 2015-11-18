@@ -7,6 +7,9 @@
     For more on layout aliases, see:
     http://developer.android.com/training/multiscreen/screensizes.html#TaskUseAliasFilters
     -->
+    <!--屏蔽gird，大小屏幕都改用list
     <item name="fragment_websitename" type="layout">@layout/fragment_websitename_grid</item>
-
+    -->
+    <item name="fragment_websitename" type="layout">@layout/fragment_websitename_list</item>
+    <item name="content_main" type="layout">@layout/content_main_pad</item>
 </resources>

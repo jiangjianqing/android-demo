@@ -11,15 +11,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.ztxs.myapplication2.R;
 
 import my.android.broadcast.NetworkChangeReceiver;
+import my.android.fragment.WebSiteContentFragment;
 import my.android.fragment.WebSiteNameFragment;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements WebSiteNameFragment.OnWebSiteNameChangeListener{
 
     public static void startAction(Context context){
         Intent intent=new Intent(context,MainActivity.class);
@@ -29,6 +29,8 @@ public class MainActivity extends BaseActivity {
     private NetworkChangeReceiver networkChangeReceiver;
 
     private WebSiteNameFragment webSiteNameFragment;
+    private WebSiteContentFragment webSiteContentFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,12 @@ public class MainActivity extends BaseActivity {
         //从Activity中获取Fragment
         webSiteNameFragment=(WebSiteNameFragment)getFragmentManager().findFragmentById(R.id.web_site_name_fragment);
         webSiteNameFragment.testInvoke();
+
+        //根据判断是否存在R.id.web_site_content_layout，来确定是大屏还是小屏
+        View fragmentView=findViewById(R.id.web_site_content_layout);
+        if(fragmentView!=null) {
+            webSiteContentFragment = (WebSiteContentFragment) getFragmentManager().findFragmentById(R.id.web_site_content_fragment);
+        }
     }
 
     @Override
@@ -129,5 +137,18 @@ public class MainActivity extends BaseActivity {
             return true;
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * WebSiteNameFragment中传递来的改变url事件
+     * @param url
+     */
+    @Override
+    public void onChangeUrl(String url) {
+        if(webSiteContentFragment!=null){
+            webSiteContentFragment.refreshFragment(url);
+        }else{
+            WebActivity.startAction(this,url);
+        }
     }
 }

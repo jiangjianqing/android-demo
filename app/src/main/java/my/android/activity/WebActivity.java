@@ -8,10 +8,10 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
 import com.example.ztxs.myapplication2.R;
+
+import my.android.fragment.WebSiteContentFragment;
 
 public class WebActivity extends AppCompatActivity {
 
@@ -44,20 +44,9 @@ public class WebActivity extends AppCompatActivity {
 
         Intent intent=this.getIntent();
         String url=intent.getStringExtra("url");
-        WebView webView=(WebView)findViewById(R.id.web_view);
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                //直接让本WebView加载url，不打开系统浏览器
-                view.loadUrl(url);
-                return true;
 
-                //return super.shouldOverrideUrlLoading(view, url);
-            }
-        });
-
-        webView.loadUrl(url);
+        WebSiteContentFragment fragment=(WebSiteContentFragment)getFragmentManager().findFragmentById(R.id.web_site_content_fragment);
+        fragment.refreshFragment(url);
     }
 
 }

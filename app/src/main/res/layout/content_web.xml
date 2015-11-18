@@ -9,8 +9,9 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior" tools:showIn="@layout/activity_web"
     tools:context="my.android.activity.WebActivity">
 
-    <WebView
-        android:id="@+id/web_view"
+    <fragment
+        android:id="@+id/web_site_content_fragment"
+        android:name="my.android.fragment.WebSiteContentFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
