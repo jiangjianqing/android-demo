@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import my.android.utils.ActivityCollector;
 import my.android.utils.LogUtil;
+import my.android.utils.MyApplication;
 
 /**
  * Created by ztxs on 15-11-11.
@@ -32,6 +34,8 @@ public class BaseActivity extends AppCompatActivity {
     private List<ReceiverItem> receivers=new ArrayList<ReceiverItem>();
 
     protected LocalBroadcastManager localBroadcastManager=null;
+
+    private boolean enableExitConfirm=false;
 
     private void addReceiverToList(BroadcastReceiver receiver,boolean isLocal,CharSequence memo){
         ReceiverItem item=new ReceiverItem();
@@ -117,7 +121,7 @@ public class BaseActivity extends AppCompatActivity {
      * @param filter
      */
     public void registerGlobalReceiver(BroadcastReceiver receiver, IntentFilter filter){
-        registerGlobalReceiver(receiver,filter,"");
+        registerGlobalReceiver(receiver, filter, "");
     }
     /**
      * 注册GlobalBroadcastReceiver(wraped natively register function)
@@ -126,7 +130,7 @@ public class BaseActivity extends AppCompatActivity {
      */
     public void registerGlobalReceiver(BroadcastReceiver receiver,IntentFilter filter,CharSequence memo){
         registerReceiver(receiver, filter);
-        addReceiverToList(receiver, false,memo);
+        addReceiverToList(receiver, false, memo);
     }
 
     /**
@@ -160,6 +164,24 @@ public class BaseActivity extends AppCompatActivity {
         clearReceivers();
         //从ActivityCollector移除统一管理
         ActivityCollector.removeActivity(this);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        //这里改为两次点击Back键退出
+        if (enableExitConfirm && keyCode == KeyEvent.KEYCODE_BACK) {
+            MyApplication.exit();
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    /**
+     * 当前页面作为主页面，退出需要确认
+     * @param enabled
+     */
+    public void setEnableExitConfirm(boolean enabled){
+        enableExitConfirm=enabled;
     }
 
     protected void finishAll(){
