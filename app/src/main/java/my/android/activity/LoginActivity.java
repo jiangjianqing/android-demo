@@ -73,6 +73,7 @@ public class LoginActivity extends BaseActivity {
                 } else {
                     editor.putString("password", "");
                 }
+                //editor.clear(); //用于清空数据
                 editor.commit();
 
                 if (account.equals("admin") && password.equals("123456")) {
