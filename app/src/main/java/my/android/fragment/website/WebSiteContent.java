@@ -78,6 +78,7 @@ public class WebSiteContent {
                 ITEM_MAP.put(item.name, item);
             }while (cursor.moveToNext());
         }
+        cursor.close();
 
         //db.query("website",)
     }
