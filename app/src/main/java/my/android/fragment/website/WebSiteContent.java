@@ -1,9 +1,17 @@
 package my.android.fragment.website;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import my.android.datapersistence.WebSiteDB;
+import my.android.utils.LogUtil;
+import my.android.utils.MyApplication;
 
 /**
  * Helper class for providing sample url for user interfaces created by
@@ -13,6 +21,8 @@ import java.util.Map;
  */
 public class WebSiteContent {
 
+    private static WebSiteDB webSiteDB;
+    private static SQLiteDatabase db;
     /**
      * An array of sample (dummy) items.
      */
@@ -24,15 +34,52 @@ public class WebSiteContent {
     public static Map<String, WebSiteItem> ITEM_MAP = new HashMap<String, WebSiteItem>();
 
     static {
+        initDatabase();
+
+
+
         // Add 3 sample items.
-        addItem(new WebSiteItem("百度", "http://www.baidu.com"));
-        addItem(new WebSiteItem("2", "Item 2"));
-        addItem(new WebSiteItem("3", "Item 3"));
+        if(ITEMS.size()==0) {
+            addItem(new WebSiteItem("百度", "http://www.baidu.com"));
+            addItem(new WebSiteItem("2", "Item 2"));
+            addItem(new WebSiteItem("3", "Item 3"));
+        }
     }
 
     private static void addItem(WebSiteItem item) {
-        ITEMS.add(item);
-        ITEM_MAP.put(item.name, item);
+        ContentValues values=new ContentValues();
+        values.put("name",item.name);
+        values.put("url",item.url);
+        db.beginTransaction();
+        try{
+            db.insert("website",null,values);
+            ITEMS.add(item);
+            ITEM_MAP.put(item.name, item);
+            db.setTransactionSuccessful();//事务成功
+        }catch (Exception e){
+            LogUtil.e("WebSiteContent",e.getMessage());
+        }finally {
+            db.endTransaction();
+        }
+    }
+
+    private static void initDatabase(){
+        webSiteDB=new WebSiteDB(MyApplication.getContext(),1);
+        db=webSiteDB.getWritableDatabase();
+
+        Cursor cursor=db.query("website",null,null,null,null,null,null);
+        if(cursor.moveToFirst()){
+            do {
+                WebSiteItem item=new WebSiteItem("","");
+                item.name=cursor.getString(cursor.getColumnIndex("name"));
+                item.url=cursor.getString(cursor.getColumnIndex("url"));
+
+                ITEMS.add(item);
+                ITEM_MAP.put(item.name, item);
+            }while (cursor.moveToNext());
+        }
+
+        //db.query("website",)
     }
 
     /**
@@ -52,4 +99,5 @@ public class WebSiteContent {
             return url;
         }
     }
+
 }
