@@ -8,4 +8,5 @@
     <item android:id="@+id/action_forceoffline" android:title="ForceOffline"/>
     <item android:id="@+id/action_secondactivity" android:title="secondactivity"/>
     <item android:id="@+id/action_quit" android:title="quit"/>
+    <item android:id="@+id/action_notification" android:title="notification"/>
 </menu>

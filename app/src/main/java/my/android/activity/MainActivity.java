@@ -1,8 +1,13 @@
 package my.android.activity;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,6 +19,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.ztxs.myapplication2.R;
+
+import java.io.File;
 
 import my.android.broadcast.NetworkChangeReceiver;
 import my.android.fragment.WebSiteContentFragment;
@@ -132,6 +139,47 @@ public class MainActivity extends BaseActivity implements WebSiteNameFragment.On
             case R.id.action_quit:
                 //关闭activity，等同于back键
                 finish();
+                break;
+            case R.id.action_notification:
+                NotificationManager notificationManager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+                //underlying deprecated
+                //Notification notification = new Notification(R.drawable.ic_launcher, "This is ticker text", System.currentTimeMillis());
+                //notification.setLatestEventInfo(this, "This is content title","This is content text", null);
+                Intent intent2=new Intent("my.android.receiver.FORCE_OFFLINE");
+                PendingIntent pi=PendingIntent.getBroadcast(this, 0, intent2, PendingIntent.FLAG_CANCEL_CURRENT);
+                //PendingIntent.getService(...)//调用Service
+                //PendingIntent.getActivities(...)//调用Activitiy
+                //PendingIntent.getBroadcast(...)//调用Broadcast
+                Notification.Builder builder=new Notification.Builder(this);
+                builder.setTicker("this is ticker info")
+                        .setSmallIcon(R.mipmap.ic_launcher)
+                        .setContentTitle("this is content title")
+                        .setContentInfo("this is content info")
+                        .setContentText("this is content text")
+                        .setContentIntent(pi)
+                        .setWhen(System.currentTimeMillis() + 2000);
+
+                //trigger notification with sound
+                //Uri soundUri = Uri.fromFile(new File("/system/media/audio/ringtones/Basic_tone.ogg"));
+                //builder.setSound(soundUri);
+
+                //trigger notification with vibrate
+                long[] vibrates={0,1000,1000,1000};
+                builder.setVibrate(vibrates);
+
+                //determinate all effects via system config
+                //builder.setDefaults(Notification.DEFAULT_ALL);
+
+                //argb用于控制 LED 灯的颜色,一般有红绿蓝三种颜色可选
+                //OnMS 用于指定 LED 灯亮起的时长,以毫秒为单位
+                //OffMS用于指定 LED 灯暗去的时长,以毫秒为单位
+                builder.setLights(Color.GREEN,1000,500);
+
+                Notification notification = builder.build();
+                int notificationId=1;
+                notificationManager.notify(notificationId, notification);
+                //notification需要在调用cancel后才能消失
+                //notificationManager.cancel(notificationId);
                 break;
             default:
                 isProcessed=false;
