@@ -1,10 +1,9 @@
-package my.android.utils;
+package com.example.cz_jjq.baselibrary.util;
 
 import android.util.Log;
 
 /**
- * 模仿Log4j的规则
- * Created by ztxs on 15-11-13.
+ * Created by cz_jjq on 11/21/15.
  */
 public class LogUtil {
     public static enum LogLevel{VERBOSE,DEBUG,INFO,WARN,ERROR,NOTHING};

@@ -12,11 +12,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
+import com.example.cz_jjq.baselibrary.util.LogUtil;
 import com.example.ztxs.myapplication2.R;
 
 import my.android.activity.MainActivity;
 import my.android.fragment.website.WebSiteContent;
-import my.android.utils.LogUtil;
 
 /**
  * A fragment representing a list of Items.

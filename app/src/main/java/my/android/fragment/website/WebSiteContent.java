@@ -4,14 +4,15 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.cz_jjq.baselibrary.util.LogUtil;
+import com.example.cz_jjq.baselibrary.util.MyApplication;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import my.android.datapersistence.WebSiteDB;
-import my.android.utils.LogUtil;
-import my.android.utils.MyApplication;
 
 /**
  * Helper class for providing sample url for user interfaces created by
@@ -57,7 +58,7 @@ public class WebSiteContent {
             ITEM_MAP.put(item.name, item);
             db.setTransactionSuccessful();//事务成功
         }catch (Exception e){
-            LogUtil.e("WebSiteContent",e.getMessage());
+            LogUtil.e("WebSiteContent", e.getMessage());
         }finally {
             db.endTransaction();
         }

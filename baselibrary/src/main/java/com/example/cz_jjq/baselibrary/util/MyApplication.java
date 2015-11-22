@@ -1,15 +1,11 @@
-package my.android.utils;
+package com.example.cz_jjq.baselibrary.util;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.ztxs.myapplication2.R;
-
-import my.android.sample.JsonSample;
-import my.android.service.LongRunningService;
+import com.example.cz_jjq.baselibrary.R;
 
 /**
  * 提供全局Application 变量，如Context等等
@@ -28,11 +24,11 @@ public class MyApplication extends Application {
         Log.d("MyApplication", "原生log测试下LogUtil");
         LogUtil.d("MyApplication", "测试下LogUtil");
 
-        JsonSample.illustrateGson();
+        //JsonSample.illustrateGson();
 
         //启动定时服务
-        Intent intent=new Intent(context, LongRunningService.class);
-        context.startService(intent);
+        //Intent intent=new Intent(context, LongRunningService.class);
+        //context.startService(intent);
     }
 
     /**
@@ -46,7 +42,8 @@ public class MyApplication extends Application {
     private static long exitTime=0L;
     public static void exit(){
         if ((System.currentTimeMillis() - exitTime) > 2000) {
-            Toast.makeText(getContext(), R.string.confirm_exit,
+                Toast.makeText(getContext(),
+                    R.string.confirm_exit,
                     Toast.LENGTH_SHORT).show();
             exitTime = System.currentTimeMillis();
         } else {

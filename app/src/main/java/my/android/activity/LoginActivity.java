@@ -1,8 +1,6 @@
 package my.android.activity;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
@@ -15,8 +13,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.ztxs.myapplication2.R;
-
-import my.android.utils.LogUtil;
 
 public class LoginActivity extends BaseActivity {
 

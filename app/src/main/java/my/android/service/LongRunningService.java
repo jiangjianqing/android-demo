@@ -8,10 +8,11 @@ import android.os.IBinder;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
 
+import com.example.cz_jjq.baselibrary.util.LogUtil;
+
 import java.util.Date;
 
 import my.android.broadcast.AlarmReceiver;
-import my.android.utils.LogUtil;
 
 /**
  * Created by ztxs on 15-11-16.
@@ -28,7 +29,7 @@ public class LongRunningService extends Service {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                LogUtil.d("LongRunningService","timer service executed at "+new Date().toString());
+                LogUtil.d("LongRunningService", "timer service executed at " + new Date().toString());
                 //stopSelf();//在service中停止自己
             }
         }).start();

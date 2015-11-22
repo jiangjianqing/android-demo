@@ -1,12 +1,12 @@
 package my.android.sample;
 
+import com.example.cz_jjq.baselibrary.util.LogUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
 
 import my.android.model.Person;
-import my.android.utils.LogUtil;
 
 /**
  * Created by ztxs on 15-11-13.

@@ -8,11 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.cz_jjq.baselibrary.util.HttpCallbackListener;
+import com.example.cz_jjq.baselibrary.util.HttpUtil;
+import com.example.cz_jjq.baselibrary.util.LogUtil;
 import com.example.ztxs.myapplication2.R;
-
-import my.android.utils.HttpCallbackListener;
-import my.android.utils.HttpUtil;
-import my.android.utils.LogUtil;
 
 public class HttpUrlConnectionActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -46,7 +45,7 @@ public class HttpUrlConnectionActivity extends AppCompatActivity implements View
 
                     @Override
                     public void onError(Exception e) {
-                        LogUtil.e("HttpUrlConnectionActivity",e.getMessage());
+                        LogUtil.e("HttpUrlConnectionActivity", e.getMessage());
                     }
                 });
                 break;

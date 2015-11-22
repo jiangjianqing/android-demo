@@ -7,9 +7,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.WindowManager;
 
+import com.example.cz_jjq.baselibrary.util.ActivityCollector;
+import com.example.cz_jjq.baselibrary.util.LogUtil;
+
 import my.android.activity.LoginActivity;
-import my.android.utils.ActivityCollector;
-import my.android.utils.LogUtil;
 
 /**
  * Created by cz_jjq on 11/16/15.
@@ -17,7 +18,7 @@ import my.android.utils.LogUtil;
 public class ForceOfflineReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(final Context context, Intent intent) {
-        LogUtil.d("ForceOfflineReceiver","ForceOfflineReceiver.onReceive触发！！");
+        LogUtil.d("ForceOfflineReceiver", "ForceOfflineReceiver.onReceive触发！！");
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
         dialogBuilder.setTitle("Warning");
         dialogBuilder.setMessage("You are forced to be offline. Please try to login again.");

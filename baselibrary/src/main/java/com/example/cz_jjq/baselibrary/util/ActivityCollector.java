@@ -1,4 +1,4 @@
-package my.android.utils;
+package com.example.cz_jjq.baselibrary.util;
 
 import android.app.Activity;
 import android.util.Log;

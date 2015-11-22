@@ -1,4 +1,4 @@
-package my.android.utils;
+package com.example.cz_jjq.baselibrary.util;
 
 /**
  * HttpUtil使用的回调接口

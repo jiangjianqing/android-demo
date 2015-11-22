@@ -8,12 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 
+import com.example.cz_jjq.baselibrary.util.ActivityCollector;
+import com.example.cz_jjq.baselibrary.util.LogUtil;
+import com.example.cz_jjq.baselibrary.util.MyApplication;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import my.android.utils.ActivityCollector;
-import my.android.utils.LogUtil;
-import my.android.utils.MyApplication;
 
 /**
  * Created by ztxs on 15-11-11.
