@@ -1,4 +1,4 @@
-package my.android.activity;
+package com.example.cz_jjq.baselibrary.activity;
 
 import android.content.BroadcastReceiver;
 import android.content.IntentFilter;
@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 
-import com.example.cz_jjq.baselibrary.util.ActivityCollector;
 import com.example.cz_jjq.baselibrary.util.LogUtil;
 import com.example.cz_jjq.baselibrary.util.MyApplication;
 

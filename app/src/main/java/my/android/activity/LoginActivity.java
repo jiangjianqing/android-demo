@@ -12,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.cz_jjq.baselibrary.activity.BaseActivity;
 import com.example.ztxs.myapplication2.R;
 
 public class LoginActivity extends BaseActivity {

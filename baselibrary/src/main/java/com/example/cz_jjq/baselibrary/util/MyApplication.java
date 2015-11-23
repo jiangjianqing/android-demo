@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.cz_jjq.baselibrary.R;
+import com.example.cz_jjq.baselibrary.activity.ActivityCollector;
 
 /**
  * 提供全局Application 变量，如Context等等

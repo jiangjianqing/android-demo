@@ -7,7 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.WindowManager;
 
-import com.example.cz_jjq.baselibrary.util.ActivityCollector;
+import com.example.cz_jjq.baselibrary.activity.ActivityCollector;
 import com.example.cz_jjq.baselibrary.util.LogUtil;
 
 import my.android.activity.LoginActivity;

@@ -1,4 +1,4 @@
-package com.example.cz_jjq.baselibrary.util;
+package com.example.cz_jjq.baselibrary.activity;
 
 import android.app.Activity;
 import android.util.Log;
