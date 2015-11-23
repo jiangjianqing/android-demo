@@ -1,14 +1,15 @@
 package com.example.cz_jjq.baselibrary.util;
 
-import com.ning.http.client.AsyncHttpClient;
-import com.ning.http.client.Response;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.TextHttpResponseHandler;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.concurrent.Future;
+
+import cz.msebera.android.httpclient.Header;
 
 /**
  * 用于提供统一的Http操作
@@ -74,7 +75,22 @@ public class HttpUtil {
      * @param url 地址
      * @param listener 监听器
      */
-    public static void sendSyncHttpRequest(final String url,HttpCallbackListener listener){
+    public static void sendSyncHttpRequest(final String url, final HttpCallbackListener listener){
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get("http://www.baidu.com", new TextHttpResponseHandler() {
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                LogUtil.e("HttpUtil","sendSyncHttpRequest error:"+responseString);
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                listener.onFinish(responseString);
+            }
+        });
+        //public static AsyncHttpClient mHttpc = new AsyncHttpClient();
+        /*
         AsyncHttpClient client=new AsyncHttpClient();
         try{
             //setFollowRedirects 用于设置Redirect，非常重要
@@ -91,5 +107,6 @@ public class HttpUtil {
                 LogUtil.e("HttpUtil",e.toString());
         }
         client.close();
+        */
     }
 }
