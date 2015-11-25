@@ -65,6 +65,15 @@ public class MainActivity extends BaseActivity implements WebSiteNameFragment.On
         Log.d("MainActivity", "xdpi is " + xdpi);
         Log.d("MainActivity", "ydpi is " + ydpi);
 
+        //implicit隐式调用
+        //Intent intent=new Intent("myapplication.activity.second.Start");
+        //intent.addCategory("myapplication.category.Second");
+        //intent.putExtra("extra_data","hello,second activity!");
+
+        //explicit显式调用
+        //Intent intent=new Intent(MainActivity.this,SecondActity.class);
+        //startActivity(intent);
+
         //注册网络状态BroadcastReceiver
         IntentFilter intentFilter=new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
         //intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
@@ -112,26 +121,9 @@ public class MainActivity extends BaseActivity implements WebSiteNameFragment.On
                 Toast.makeText(this,"点击了setting menu",Toast.LENGTH_SHORT).show();
                 Log.w("MainActivity","点击了setting menu");
                 break;
-            case R.id.action_webview:
-                WebActivity.startAction(this,"http://www.baidu.com");
-                break;
-            case R.id.action_httpUrlConnection:
-                //HttpUrlConnectionActivity.startAction(this,"http://www.baidu.com");
-                break;
             case R.id.action_forceoffline:
                 Intent intent=new Intent("my.android.receiver.FORCE_OFFLINE");
                 sendBroadcast(intent);
-                break;
-            case R.id.action_secondactivity:
-                //implicit隐式调用
-                //Intent intent=new Intent("myapplication.activity.second.Start");
-                //intent.addCategory("myapplication.category.Second");
-                //intent.putExtra("extra_data","hello,second activity!");
-
-                //explicit显式调用
-                //Intent intent=new Intent(MainActivity.this,SecondActity.class);
-                //startActivity(intent);
-
                 break;
             case R.id.action_quit:
                 //关闭activity，等同于back键
