@@ -134,4 +134,15 @@ public class WebSiteContentFragment extends Fragment {
         public void onFragmentInteraction(Uri uri);
     }
 
+
+    //----------------------添加WebView控制
+
+    public boolean canGoBack(){
+        return webView.canGoBack();
+    }
+
+    public void goBack(){
+        webView.goBack();
+    }
+
 }

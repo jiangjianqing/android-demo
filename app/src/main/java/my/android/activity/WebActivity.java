@@ -15,6 +15,7 @@ import my.android.fragment.WebSiteContentFragment;
 
 public class WebActivity extends AppCompatActivity {
 
+    private WebSiteContentFragment webContentFragment;
     /**
      * 根据传入的url打开网页
      * @param context
@@ -45,8 +46,16 @@ public class WebActivity extends AppCompatActivity {
         Intent intent=this.getIntent();
         String url=intent.getStringExtra("url");
 
-        WebSiteContentFragment fragment=(WebSiteContentFragment)getFragmentManager().findFragmentById(R.id.web_site_content_fragment);
-        fragment.refreshFragment(url);
+        webContentFragment=(WebSiteContentFragment)getFragmentManager().findFragmentById(R.id.web_site_content_fragment);
+        webContentFragment.refreshFragment(url);
     }
 
+    @Override
+    public void onBackPressed() {
+        if(webContentFragment.canGoBack()){
+            webContentFragment.goBack();
+        }else {
+            super.onBackPressed();
+        }
+    }
 }
