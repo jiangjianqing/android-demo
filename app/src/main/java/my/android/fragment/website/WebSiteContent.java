@@ -42,7 +42,7 @@ public class WebSiteContent {
         // Add 3 sample items.
         if(ITEMS.size()==0) {
             addItem(new WebSiteItem("百度", "http://www.baidu.com"));
-            addItem(new WebSiteItem("2", "Item 2"));
+            addItem(new WebSiteItem("腾讯", "http://3g.qq.com"));
             addItem(new WebSiteItem("3", "Item 3"));
         }
     }
@@ -98,7 +98,7 @@ public class WebSiteContent {
 
         @Override
         public String toString() {
-            return url;
+            return name;
         }
     }
 

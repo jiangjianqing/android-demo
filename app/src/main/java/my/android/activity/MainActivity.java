@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -20,8 +19,6 @@ import android.widget.Toast;
 
 import com.example.cz_jjq.baselibrary.activity.BaseActivity;
 import com.example.ztxs.myapplication2.R;
-
-import java.io.File;
 
 import my.android.broadcast.NetworkChangeReceiver;
 import my.android.fragment.WebSiteContentFragment;
@@ -119,7 +116,7 @@ public class MainActivity extends BaseActivity implements WebSiteNameFragment.On
                 WebActivity.startAction(this,"http://www.baidu.com");
                 break;
             case R.id.action_httpUrlConnection:
-                HttpUrlConnectionActivity.startAction(this,"http://www.baidu.com");
+                //HttpUrlConnectionActivity.startAction(this,"http://www.baidu.com");
                 break;
             case R.id.action_forceoffline:
                 Intent intent=new Intent("my.android.receiver.FORCE_OFFLINE");
@@ -132,10 +129,9 @@ public class MainActivity extends BaseActivity implements WebSiteNameFragment.On
                 //intent.putExtra("extra_data","hello,second activity!");
 
                 //explicit显式调用
-                //Intent intent=new Intent(MainActivity.this,SecondActivity.class);
+                //Intent intent=new Intent(MainActivity.this,SecondActity.class);
                 //startActivity(intent);
 
-                SecondActivity.startAction(MainActivity.this, "hello,second activity!", "");
                 break;
             case R.id.action_quit:
                 //关闭activity，等同于back键
