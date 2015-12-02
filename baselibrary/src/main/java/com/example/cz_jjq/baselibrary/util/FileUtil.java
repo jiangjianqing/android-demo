@@ -1,24 +1,16 @@
 package com.example.cz_jjq.baselibrary.util;
 
 import android.content.Context;
-import android.text.TextUtils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.Serializable;
-import java.io.StreamCorruptedException;
-import java.util.Objects;
 
 /**
  * Created by ztxs on 15-11-24.
@@ -32,7 +24,7 @@ public class FileUtil {
      * @param filename
      * @return
      */
-    public static boolean SaveObjToFile(Context context,Object obj,String filename){
+    public static boolean saveObjToFile(Context context, Object obj, String filename){
         boolean ret=false;
         FileOutputStream out=null;
         ObjectOutputStream stream=null;
